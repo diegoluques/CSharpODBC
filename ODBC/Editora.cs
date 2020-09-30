@@ -8,7 +8,7 @@ namespace ODBC
 		public void InsereRegistro()
 		{
 			string stringConexao = @"driver={SQL Server};
-				server=nameserve; database=namedatabase; uid=sa; pwd=password;";
+				server =nameserve; database=namedatabase; uid=sa; pwd=password; "; 
 
 			System.Console.Write("Digite o nome de uma Editora: ");
 			string nome = System.Console.ReadLine();
@@ -28,11 +28,9 @@ namespace ODBC
 
 				conexao.Open();
 				command.ExecuteNonQuery();
-				 
-				Console.WriteLine("-------------------------------------------------------");
-				Console.WriteLine("Registro salvo com sucesso                            -");
-				Console.WriteLine("-------------------------------------------------------");
-				Console.ReadLine(); 
+
+				Console.WriteLine("---------------------------------------------------------");
+				Console.WriteLine("Registro salvo com sucesso                              -");
 			}
 		}
 	}
