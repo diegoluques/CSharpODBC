@@ -22,39 +22,62 @@ namespace ODBC
 
 		private static void OpcoesDoMenu()
 		{
-			Console.WriteLine("---------------------------------------------------------");
-			Console.WriteLine("Digite o número da opção desejada:                      -");
-			Console.WriteLine("> [1] Cadastrar Editora                                 -");
-			Console.WriteLine("> [2] Cadastrar Livro                                   -");
-			Console.WriteLine("> [3] Limpar                                            -");
-			Console.WriteLine("> [4] Sair                                              -");
-			Console.WriteLine("---------------------------------------------------------");
+			Console.WriteLine("-".PadRight(69, '-'));
+			Console.WriteLine("-                               MENU                                -");
+			Console.WriteLine("-".PadRight(69, '-'));
+			Console.WriteLine("> [1] Cadastrar Editora".PadRight(68, ' ') + "-");
+			Console.WriteLine("> [2] Listar Editoras".PadRight(68, ' ') + "-");
+			Console.WriteLine("> [3] Excluir Editora".PadRight(68, ' ') + "-");
+			Console.WriteLine("> [4] Cadastrar Livro".PadRight(68, ' ') + "-");
+			Console.WriteLine("> [5] Listar Livros".PadRight(68, ' ') + "-");
+			Console.WriteLine("> [6] Excluir Livro".PadRight(68, ' ') + "-");
+			Console.WriteLine("> [7] Limpar".PadRight(68, ' ') + "-");
+			Console.WriteLine("> [8] Sair".PadRight(68, ' ') + "-");
+			Console.WriteLine("-".PadRight(69, '-'));
 			Console.Write("Opção: ");
 		}
 
 		public static void TipoOperacao(string op)
 		{
 			bool sair = false;
+			Editora editora = new Editora();
+			Livro livro = new Livro();
 			while (op != "")
 			{
 				switch (op)
 				{
 					case "1":
-						Console.WriteLine("> [1] Cadastrar Editora                                 -");
-						Editora insereEditor = new Editora();
-						insereEditor.InsereRegistro();
+						Console.WriteLine("> [1] Cadastrar Editora".PadRight(68, ' ') + "-");
+						editora.InsereRegistro();
 						break;
 					case "2":
-						Console.WriteLine("> [2] Cadastrar Livro                                   -");
-						Livro insereLivro = new Livro();
-						insereLivro.InsereRegistro();
+						Console.WriteLine("> [2] Listar Editoras".PadRight(68, ' '));
+						Console.WriteLine("-".PadRight(69, '-'));
+						editora.ListaRegistro();
 						break;
 					case "3":
-						Console.WriteLine("> [3] Limpar                                            -");
-						Console.Clear();
+						Console.WriteLine("> [3] Excluir Editora".PadRight(68, ' ') + "-");
+						//editora.InsereRegistro();
 						break;
 					case "4":
-						Console.WriteLine("> [4] Sair                                              -");
+						Console.WriteLine("> [2] Cadastrar Livro".PadRight(68, ' ') + "-");
+						livro.InsereRegistro();
+						break;
+					case "5":
+						Console.WriteLine("> [2] Listar Livros".PadRight(68, ' '));
+						Console.WriteLine("-".PadRight(69, '-'));
+						livro.ListaRegistro();
+						break;
+					case "6":
+						Console.WriteLine("> [2] Excluir Livro".PadRight(68, ' ') + "-");
+						//livro.InsereRegistro();
+						break;
+					case "7":
+						Console.WriteLine("> [3] Limpar".PadRight(68, ' ') + "-");
+						Console.Clear();
+						break;
+					case "8":
+						Console.WriteLine("> [4] Sair".PadRight(68, ' ') + "-");
 						System.Threading.Thread.Sleep(300);
 						sair = true;
 						break;
