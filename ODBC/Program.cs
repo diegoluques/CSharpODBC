@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; 
 
 namespace ODBC
 {
@@ -13,10 +13,22 @@ namespace ODBC
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine("");
-				Console.WriteLine("Erro: " + ex);
-				Console.ReadLine();
-				throw;
+				if (ex.Message.Contains("constraint"))
+				{
+					Console.WriteLine("".PadRight(69, '-'));
+					Console.WriteLine("Ops!".PadRight(68, ' ') + "-");
+					Console.WriteLine("Registro não pode ser excluído, a Editora tem vínculos com Livro(s).".PadRight(68, ' ') + "-");
+					Console.WriteLine("".PadRight(68, ' ') + "-");
+					OpcoesDoMenu();
+					TipoOperacao(Console.ReadLine());
+				}
+				else
+				{
+					Console.WriteLine("");
+					Console.WriteLine("Erro: " + ex);
+					Console.ReadLine();
+					throw;
+				}
 			}
 		}
 
@@ -57,28 +69,28 @@ namespace ODBC
 						break;
 					case "3":
 						Console.WriteLine("> [3] Excluir Editora".PadRight(68, ' ') + "-");
-						//editora.InsereRegistro();
+						editora.DeletaRegistro();
 						break;
 					case "4":
-						Console.WriteLine("> [2] Cadastrar Livro".PadRight(68, ' ') + "-");
+						Console.WriteLine("> [4] Cadastrar Livro".PadRight(68, ' ') + "-");
 						livro.InsereRegistro();
 						break;
 					case "5":
-						Console.WriteLine("> [2] Listar Livros".PadRight(68, ' '));
+						Console.WriteLine("> [5] Listar Livros".PadRight(68, ' '));
 						Console.WriteLine("-".PadRight(69, '-'));
 						livro.ListaRegistro();
 						break;
 					case "6":
-						Console.WriteLine("> [2] Excluir Livro".PadRight(68, ' ') + "-");
-						//livro.InsereRegistro();
+						Console.WriteLine("> [6] Excluir Livro".PadRight(68, ' ') + "-");
+						livro.DeletaRegistro();
 						break;
 					case "7":
-						Console.WriteLine("> [3] Limpar".PadRight(68, ' ') + "-");
+						Console.WriteLine("> [7] Limpar".PadRight(68, ' ') + "-");
 						Console.Clear();
 						break;
 					case "8":
-						Console.WriteLine("> [4] Sair".PadRight(68, ' ') + "-");
-						System.Threading.Thread.Sleep(300);
+						Console.WriteLine("> [8] Sair".PadRight(68, ' ') + "-");
+						Environment.Exit(-1);
 						sair = true;
 						break;
 				}

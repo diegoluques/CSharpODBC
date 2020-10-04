@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.Odbc;
+using System.Data.Odbc; 
 
 namespace ODBC
 {
@@ -7,9 +7,6 @@ namespace ODBC
 	{
 		public void InsereRegistro()
 		{
-			string stringConexao = @"driver={SQL Server};
-				server =nameserve; database=namedatabase; uid=sa; pwd=password; ";
-
 			Console.Write("Digite o nome de uma Editora: ");
 			string nome = System.Console.ReadLine();
 
@@ -18,8 +15,8 @@ namespace ODBC
 
 			string textoInsere = @"INSERT INTO Editora (nomeEditora, emailEditora) VALUES(?, ?)";
 
-			using (OdbcConnection conexao = new OdbcConnection(stringConexao))
-			{ 
+			using (OdbcConnection conexao = ConnectionFactory.CreateConnection())
+			{
 				OdbcCommand command = new OdbcCommand(textoInsere, conexao);
 
 				command.Parameters.AddWithValue("@nomeEditora", nome);
@@ -35,10 +32,7 @@ namespace ODBC
 
 		public void ListaRegistro()
 		{
-			string stringConexao = @"driver={SQL Server};
-				server =nameserve; database=namedatabase; uid=sa; pwd=password; ";
-
-			using (OdbcConnection conexao = new OdbcConnection(stringConexao))
+			using (OdbcConnection conexao = ConnectionFactory.CreateConnection())
 			{
 				string scriptLista = @"SELECT * FROM Editora";
 				OdbcCommand command = new OdbcCommand(scriptLista, conexao);
@@ -56,6 +50,27 @@ namespace ODBC
 
 					Console.WriteLine("|{0}|{1}|{2}", idEditora.ToString().PadRight(5, ' '), nomeEditora.PadRight(30, ' '), emailEditora.PadRight(30, ' ') + "|");
 				}
+			}
+		}
+
+		internal void DeletaRegistro()
+		{
+
+			Console.Write("Preencha com o Id da Editora para exclusão: ");
+			string idEditora = System.Console.ReadLine();
+
+			string textoDelete = @"DELETE FROM Editora WHERE idEditora = " + idEditora;
+
+			using (OdbcConnection conexao = ConnectionFactory.CreateConnection())
+			{
+				OdbcCommand command = new OdbcCommand(textoDelete, conexao);
+
+				conexao.Open();
+				command.ExecuteNonQuery();
+
+				Console.WriteLine("-".PadRight(69, '-'));
+				Console.WriteLine("Registro excluído com sucesso".PadRight(68, ' ') + "-");
+				 
 			}
 		}
 	}

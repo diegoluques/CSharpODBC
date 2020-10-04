@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionFactory.cs" />
     <Compile Include="Editora.cs" />
     <Compile Include="Livro.cs" />
     <Compile Include="Program.cs" />
